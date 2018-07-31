@@ -17,3 +17,10 @@ class Question(models.Model):
     good = models.IntegerField(default=0)
     bad = models.IntegerField(default=0)
     browse = models.IntegerField(default=0)
+
+    def __str__(self):
+        # return ''.join(['Id: ', str(self.id), ' ', 'Title: ' + self.title])
+        # or
+        # return 'Id: {id}, Title:{title}'.format(id=self.id, title=self.title)
+        # or
+        return 'Id: {0}, Title:{1}'.format(self.id, self.title)
