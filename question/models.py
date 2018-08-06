@@ -5,7 +5,7 @@ from question.attributes import QuestionAttribute
 # Create your models here.
 
 class Question(models.Model):
-    id = models.AutoField(primary_key=True, )
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=120)
     content = models.TextField()
     user_id = models.IntegerField(default=0)
