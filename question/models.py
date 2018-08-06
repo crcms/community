@@ -15,9 +15,9 @@ class Question(models.Model):
     status = models.SmallIntegerField(default=0, choices=tuple(
         zip(*[QuestionAttribute.get_transform('status').keys(), QuestionAttribute.get_transform('status').values()]))
                                       )
-    good_num = models.IntegerField(default=0)
-    comment_num = models.IntegerField(default=0)
-    browse_num = models.IntegerField(default=0)
+    good_num = models.IntegerField(default=0, editable=False)
+    comment_num = models.IntegerField(default=0, editable=False)
+    browse_num = models.IntegerField(default=0, editable=False)
 
     def __str__(self):
         # return ''.join(['Id: ', str(self.id), ' ', 'Title: ' + self.title])
