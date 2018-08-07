@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpRequest,HttpResponse
 from rest_framework import viewsets
-from question.serializers import QuestionSerializer
-from question.models import Question
+from .serializers import QuestionSerializer
+from .models import Question
 
 # Create your views here.
 

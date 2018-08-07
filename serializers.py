@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from rest_framework import serializers
-from question import models
+from . import models
 
 # from question import models
 '''

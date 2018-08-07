@@ -1,5 +1,5 @@
 from django.db import models
-from question.attributes import QuestionAttribute
+from .attributes import QuestionAttribute
 
 
 # Create your models here.
