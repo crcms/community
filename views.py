@@ -30,7 +30,7 @@ def index(request: HttpRequest):
     print('=====================')
     print(result['data'])
     print('=====================')
-    return HttpResponse('Index')
+    return JsonResponse(result['data'])
 
 
 def login(request: HttpRequest):
