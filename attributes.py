@@ -1,7 +1,7 @@
-import sys
+from abc import ABCMeta
 
 
-class QuestionAttribute(object):
+class QuestionAttribute(ABCMeta):
     _attributes = {
         'STATUS_PASS': 1,
         'STATUS_NOT_PASS': 2,
