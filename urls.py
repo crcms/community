@@ -12,6 +12,7 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('questions', views.QuestionViewSet)
+router.register('categories', views.CategoryViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

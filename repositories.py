@@ -1,7 +1,16 @@
-from .models import Question,User
+from .models import Question, User, Category
+from abc import ABCMeta, abstractmethod
+from django.db.models import Model
 
 
-class QuestionRepository(object):
+class AbstractRepository(ABCMeta):
+
+    @abstractmethod
+    def new_model(self) -> Model:
+        pass
+
+
+class QuestionRepository(AbstractRepository):
 
     def new_model(self) -> Question:
         '''
@@ -13,6 +22,11 @@ class QuestionRepository(object):
     def all(self):
         return Question.objects.all()
 
-class UserRepository(object):
 
+class UserRepository(object):
     pass
+
+
+class CategoryRepository(AbstractRepository):
+    def new_model(self) -> Category:
+        return Category()
