@@ -23,8 +23,9 @@ class QuestionRepository(AbstractRepository):
         return Question.objects.all()
 
 
-class UserRepository(object):
-    pass
+class UserRepository(AbstractRepository):
+    def new_model(self) -> User:
+        return User()
 
 
 class CategoryRepository(AbstractRepository):

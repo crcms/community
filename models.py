@@ -4,7 +4,7 @@ from abc import ABCMeta
 from time import time
 
 
-class BaseModel(models.Model):
+class ModelSoftDeleteMixin(object):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True)
@@ -16,7 +16,7 @@ class BaseModel(models.Model):
 
 # Create your models here.
 
-class Question(BaseModel):
+class Question(ModelSoftDeleteMixin, models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=120)
     content = models.TextField()
@@ -37,7 +37,7 @@ class Question(BaseModel):
         return 'Id: {0}, Title:{1}'.format(self.id, self.title)
 
 
-class User(BaseModel):
+class User(ModelSoftDeleteMixin, models.Model):
     class Meta(object):
         db_table = 'users'
         managed = False
@@ -51,7 +51,7 @@ class User(BaseModel):
     deleted_at = models.BigIntegerField(null=True)
 
 
-class Category(BaseModel):
+class Category(ModelSoftDeleteMixin, models.Model):
     class Meta(object):
         db_table = 'community_categories'
 
