@@ -1,6 +1,5 @@
 from django.db import models
 from .attributes import QuestionAttribute
-from abc import ABCMeta
 from time import time
 
 
@@ -22,6 +21,9 @@ class Question(ModelSoftDeleteMixin, models.Model):
     content = models.TextField()
     user_id = models.IntegerField(default=0)
 
+    # def __init__(self):
+    #     opts.concrete_fields
+
     status = models.SmallIntegerField(default=0, choices=tuple(
         zip(*[QuestionAttribute.get_transform('status').keys(), QuestionAttribute.get_transform('status').values()]))
                                       )
@@ -37,7 +39,7 @@ class Question(ModelSoftDeleteMixin, models.Model):
         return 'Id: {0}, Title:{1}'.format(self.id, self.title)
 
 
-class User(ModelSoftDeleteMixin, models.Model):
+class User(models.Model):
     class Meta(object):
         db_table = 'users'
         managed = False
@@ -58,3 +60,15 @@ class Category(ModelSoftDeleteMixin, models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     status = models.SmallIntegerField(default=0)
+
+    def __init__(self, *args, **kwargs):
+
+        # models.Model 初始化
+        super(ModelSoftDeleteMixin, self).__init__(*args, **kwargs)
+
+        self._meta.concrete_fields.append(self.created_at)
+        self._meta.concrete_fields.append(self.updated_at)
+        self._meta.concrete_fields.append(self.deleted_at)
+
+        # self._meta.local_fields.append(2)
+        # print(self._meta.local_fields)

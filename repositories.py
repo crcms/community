@@ -3,7 +3,7 @@ from abc import ABCMeta, abstractmethod
 from django.db.models import Model
 
 
-class AbstractRepository(ABCMeta):
+class AbstractRepository(metaclass=ABCMeta):
 
     @abstractmethod
     def new_model(self) -> Model:
@@ -31,3 +31,6 @@ class UserRepository(AbstractRepository):
 class CategoryRepository(AbstractRepository):
     def new_model(self) -> Category:
         return Category()
+
+    def all(self):
+        return Category.objects.all()

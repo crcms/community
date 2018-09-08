@@ -10,6 +10,7 @@ from crcms.settings import PASSPORT
 from crcms.passports import Passport
 from json import dumps
 from django.forms.models import model_to_dict
+from .models import *
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
@@ -41,6 +42,8 @@ def index(request: HttpRequest):
 
 
 def login(request: HttpRequest):
+    print(Category()._meta.fields)
+    return  HttpResponse('abcdef'.encode('UTF-8'))
     host = 'http://' + PASSPORT['host']
     url = quote('http://127.0.0.1:28080' + reverse('community.index'))
     app_key = PASSPORT['key']
